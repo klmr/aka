@@ -1,0 +1,23 @@
+linters: {
+    writeLines(
+      c(
+        'Version: ', as.character(utils::packageVersion('lintr')),
+        'Path: ', find.package('lintr'),
+        'Config: ', lintr:::find_config('.'),
+        'PWD: ', getwd(),
+        'interactive: ', interactive()
+      ),
+      '~/lintr-config.dbg'
+    )
+    #config_dir = dirname(file)
+    config_dir = 'dev/lintr'
+    lapply(dir(config_dir, '_linter\\.r$', full.names = TRUE), source, local = environment())
+    lintr::linters_with_defaults(
+      assignment_linter = arrow_assignment_linter(),
+      function_left_parentheses_linter = function_definition_linter(),
+      indentation_linter = indentation_linter(2L),
+      line_length_linter = line_length_linter(120L),
+      object_usage_linter = NULL, # unusably buggy
+      quotes_linter = lintr::quotes_linter("'")
+    )
+  }

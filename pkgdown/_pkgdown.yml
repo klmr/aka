@@ -1,0 +1,13 @@
+template:
+  bootstrap: 5
+  light-switch: true
+
+authors:
+  Konrad Rudolph:
+    href: https://klmr.me
+
+repo:
+  branch: main
+
+development:
+  mode: auto
