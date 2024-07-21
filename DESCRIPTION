@@ -3,7 +3,7 @@ Title: Define Aliases for R Expressions
 Version: 0.1.0
 Authors@R: person("Konrad", "Rudolph", email = "konrad.rudolph@gmail.com", role = c("cre", "aut"), comment = c(ORCID = "https://orcid.org/0000-0002-9866-7051"))
 Description: Create aliases for other R names or arbitrarily complex R expressions. Accessing the alias acts as-if the aliased expression were invoked instead, and continuously reflects the current value of that expression: updates to the original expression will be reflected in the alias; and updates to the alias will automatically be reflected in the original expression.
-URL: https://klmr.me/aka, https://github.com/klmr/aka
+URL: https://klmr.me/aka/, https://github.com/klmr/aka
 BugReports: https://github.com/klmr/aka/issues
 Suggests: testthat
 License: MIT + file LICENSE
