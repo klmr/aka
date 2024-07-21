@@ -1,3 +1,4 @@
+^\.gitlab$
 ^LICENSE\.md$
 ^README\.Rmd$
 ^dev$

@@ -1,4 +1,4 @@
-try(rprofile::load(), silent = TRUE)
+try(rprofile::load())
 
 options(
   lintr.linter_file = file.path(getwd(), 'dev', 'lintr', 'config')
