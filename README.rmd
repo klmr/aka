@@ -24,7 +24,13 @@ registerS3method(
 
 ## Installation
 
-You can install the development version of `r pkg` from GitHub:
+`r pkg` is on CRAN; install it via:
+
+```r
+install.packages('aka')
+```
+
+You can also install the development version of `r pkg` from GitHub:
 
 ```r
 pak::pak('klmr/aka')

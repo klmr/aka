@@ -12,8 +12,14 @@ automatically be reflected in the original expression.
 
 ## Installation
 
-You can install the development version of <span class="pkg">aka</span>
-from GitHub:
+<span class="pkg">aka</span> is on CRAN; install it via:
+
+``` r
+install.packages('aka')
+```
+
+You can also install the development version of
+<span class="pkg">aka</span> from GitHub:
 
 ``` r
 pak::pak('klmr/aka')
