@@ -59,7 +59,7 @@ local({
 
   .write_license_file = function () {
     authors = toString(format(.desc()$Authors, c('given', 'family')))
-    license_text = sprintf('YEAR: 2024\nCOPYRIGHT HOLDER: %s', authors)
+    license_text = sprintf('YEAR: 2024–%s\nCOPYRIGHT HOLDER: %s', format(Sys.Date(), '%Y'), authors)
     writeLines(license_text, file.path(.pkgdir, 'LICENSE'))
   }
 
