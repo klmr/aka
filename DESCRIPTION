@@ -5,6 +5,7 @@ Authors@R: person("Konrad", "Rudolph", email = "konrad.rudolph@gmail.com", role 
 Description: Create aliases for other R names or arbitrarily complex R expressions. Accessing the alias acts as-if the aliased expression were invoked instead, and continuously reflects the current value of that expression: updates to the original expression will be reflected in the alias; and updates to the alias will automatically be reflected in the original expression.
 URL: https://klmr.me/aka/, https://github.com/klmr/aka
 BugReports: https://github.com/klmr/aka/issues
+Depends: R (>= 4.1.0)
 Suggests: testthat
 License: MIT + file LICENSE
 Encoding: UTF-8
