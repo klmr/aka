@@ -1,5 +1,5 @@
 arrow_assignment_linter = function () {
-  xpath = '//LEFT_ASSIGN | //RIGHT_ASSIGN'
+  xpath = '//LEFT_ASSIGN[text() = "<-"] | //RIGHT_ASSIGN'
   lint_message_fmt = 'Use =, not %s, for assignment.'
 
   lintr::Linter(\(source_expression) {

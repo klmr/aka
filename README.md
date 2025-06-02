@@ -61,7 +61,7 @@ and updates to the alias are reflected in the original name.
 As an alternative syntax, we can use an “assignment-like” form:
 
 ``` r
-ax %=&% x
+ax := x
 ```
 
 This form is strictly equivalent to `alias(ax = x)`.
@@ -69,7 +69,7 @@ This form is strictly equivalent to `alias(ax = x)`.
 Furthermore, aliases can be created for complex expressions:
 
 ``` r
-mercedes %=&% mtcars[grep('^Merc ', rownames(mtcars)), ]
+mercedes := mtcars[grep('^Merc ', rownames(mtcars)), ]
 mercedes
 ```
 

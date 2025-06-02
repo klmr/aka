@@ -66,7 +66,7 @@ As we can see, updates to the original names are reflected in the alias, and upd
 As an alternative syntax, we can use an “assignment-like” form:
 
 ```{r example-assign}
-ax %=&% x
+ax := x
 ```
 
 This form is strictly equivalent to `alias(ax = x)`.
@@ -74,7 +74,7 @@ This form is strictly equivalent to `alias(ax = x)`.
 Furthermore, aliases can be created for complex expressions:
 
 ```{r example-expr}
-mercedes %=&% mtcars[grep('^Merc ', rownames(mtcars)), ]
+mercedes := mtcars[grep('^Merc ', rownames(mtcars)), ]
 mercedes
 ```
 

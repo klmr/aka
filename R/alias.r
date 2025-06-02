@@ -15,7 +15,7 @@
 #' The parameters `expr_env` and `alias_env` are used to control the environments in which the expression is evaluated and the alias is created, respectively. Note that specifying the correct `expr_env` is particularly important when *assigning* to an alias: an expression can be evaluated inside a parent environment without having to specify `expr_env`; however, during assignment this would cause the assignee object to be copied into the calling environment. See *Examples* for a concrete example of this.
 #' @examples
 #' x = 'hello'
-#' alias(ax = x)
+#' alias(ax = x)  # same as: ax := x
 #' ax    # prints 'hello'
 #'
 #' x = 'world'
@@ -25,7 +25,7 @@
 #' x     # prints 'goodbye'
 #'
 #' # Aliases can be created for complex expressions:
-#' alias(mercedes = mtcars[grepl('^Merc ', rownames(mtcars)), ])
+#' mercedes := mtcars[grepl('^Merc ', rownames(mtcars)), ]
 #' mercedes
 #'
 #' mercedes$vs = 0  # set all Mercedes engine types to V-shaped
@@ -34,7 +34,7 @@
 #' # Aliases can contain interpolated expressions:
 #' n = 1
 #' m = 2
-#' alias(s = .(n) + m)
+#' s := .(n) + m
 #' s  # prints 3
 #'
 #' n = 10
@@ -48,7 +48,7 @@
 #' e = attach(new.env())
 #' e$y = 'hello'
 #'
-#' alias(ay = y)
+#' ay := y
 #'
 #' # Works: `y` is found in the parent environment
 #' ay  # prints 'hello'
@@ -58,9 +58,10 @@
 #' e$y   # prints 'hello', still!
 #' y     # prints 'world'
 #'
-#' # To prevent this, use `expr_env`:
+#' # To prevent this, use the `expr_env` argument:
 #' # alias(ay = y, expr_env = e)
 #' \dontshow{
+#' # cleanup
 #' detach()
 #' }
 #' @export
@@ -85,10 +86,11 @@ alias = function (..., expr_env = parent.frame(), alias_env = parent.frame()) {
   makeActiveBinding(names(args), f, alias_env)
 }
 
-#' @description `name %&=% expr` is the same as `alias(name = expr)`.
+#' @description `name := expr` is the same as `alias(name = expr)`.
+#' @usage \special{name := expr}
 #' @export
 #' @rdname alias
-`%=&%` = function (name, expr) {
+`:=` = function (name, expr) {
   name = as.character(substitute(name))
   caller = parent.frame()
   expr = substitute(expr)

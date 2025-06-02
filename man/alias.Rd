@@ -2,12 +2,12 @@
 % Please edit documentation in R/alias.r
 \name{alias}
 \alias{alias}
-\alias{\%=&\%}
+\alias{:=}
 \title{Create an alias for an expression}
 \usage{
 \special{alias(name = expr, expr_env = parent.frame(), alias_env = parent.frame())}
 
-name \%=&\% expr
+\special{name := expr}
 }
 \arguments{
 \item{expr_env}{the environment in which to evaluate the expression}
@@ -24,7 +24,7 @@ name \%=&\% expr
 \description{
 \verb{alias(name = expr}) creates an alias for \code{expr} named \code{name}. Subsequently, \code{name} can (mostly) be used interchangeably with \code{expr}.
 
-\code{name \%&=\% expr} is the same as \code{alias(name = expr)}.
+\code{name := expr} is the same as \code{alias(name = expr)}.
 }
 \details{
 After executing \code{alias(name = expr)}, \code{name} can be used to refer to the value of \code{expr}. This is especially useful when \code{expr} is a complex expression that is used multiple times in the code. Unlike with regular assignment, \code{expr} will be reevaluated every time \code{name} is evaluated. This means that the value of \code{name} always stays up to date, similar to a \link[shiny:reactive]{“reactive” expression}. On the flip side, it also means that accessing \code{name} can be very slow if evaluating \code{expr} is time-consuming.
@@ -35,7 +35,7 @@ The parameters \code{expr_env} and \code{alias_env} are used to control the envi
 }
 \examples{
 x = 'hello'
-alias(ax = x)
+alias(ax = x)  # same as: ax := x
 ax    # prints 'hello'
 
 x = 'world'
@@ -45,7 +45,7 @@ ax = 'goodbye'
 x     # prints 'goodbye'
 
 # Aliases can be created for complex expressions:
-alias(mercedes = mtcars[grepl('^Merc ', rownames(mtcars)), ])
+mercedes := mtcars[grepl('^Merc ', rownames(mtcars)), ]
 mercedes
 
 mercedes$vs = 0  # set all Mercedes engine types to V-shaped
@@ -54,7 +54,7 @@ mtcars
 # Aliases can contain interpolated expressions:
 n = 1
 m = 2
-alias(s = .(n) + m)
+s := .(n) + m
 s  # prints 3
 
 n = 10
@@ -68,7 +68,7 @@ alias_expr('s')  # prints `1 + m`
 e = attach(new.env())
 e$y = 'hello'
 
-alias(ay = y)
+ay := y
 
 # Works: `y` is found in the parent environment
 ay  # prints 'hello'
@@ -78,9 +78,10 @@ ay = 'world'
 e$y   # prints 'hello', still!
 y     # prints 'world'
 
-# To prevent this, use `expr_env`:
+# To prevent this, use the `expr_env` argument:
 # alias(ay = y, expr_env = e)
 \dontshow{
+# cleanup
 detach()
 }
 }

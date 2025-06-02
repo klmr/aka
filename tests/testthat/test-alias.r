@@ -140,10 +140,18 @@ test_that('alias expressions can have arguments spliced in', {
   expect_identical(alias_expr('s'), quote(sum(1L, y, 1L)))
 })
 
-test_that('the alias operator `%=&% can create aliases', {
+test_that('the alias operator := can create aliases', {
   x = y = z = 1L
-  s %=&% sum(..(c(x, quote(y), z)))
+  s := sum(..(c(x, quote(y), z)))
 
   expect_equal(s, 3L)
   expect_identical(alias_expr('s'), quote(sum(1L, y, 1L)))
+})
+
+test_that('alias operator has the correct operator precedence', {
+  x = y = 1L
+  s := x + y
+
+  expect_equal(s, 2L)
+  expect_identical(alias_expr('s'), quote(x + y))
 })
