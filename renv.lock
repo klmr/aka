@@ -282,14 +282,8 @@
     },
     "digest": {
       "Package": "digest",
-      "Version": "0.6.36",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "utils"
-      ],
-      "Hash": "fd6824ad91ede64151e93af67df6376b"
+      "Version": "0.6.37",
+      "Source": "Repository"
     },
     "downlit": {
       "Package": "downlit",
