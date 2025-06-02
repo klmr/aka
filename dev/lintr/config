@@ -1,15 +1,4 @@
 linters: {
-    writeLines(
-      c(
-        'Version: ', as.character(utils::packageVersion('lintr')),
-        'Path: ', find.package('lintr'),
-        'Config: ', lintr:::find_config('.'),
-        'PWD: ', getwd(),
-        'interactive: ', interactive()
-      ),
-      '~/lintr-config.dbg'
-    )
-    #config_dir = dirname(file)
     config_dir = 'dev/lintr'
     lapply(dir(config_dir, '_linter\\.r$', full.names = TRUE), source, local = environment())
     lintr::linters_with_defaults(
