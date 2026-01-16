@@ -4,11 +4,11 @@
 # <span class="pkg">aka</span> <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
 <code>aka::alias()</code> allows creating aliases for other R names or
-arbitrarily complex R expressions. Accessing the alias acts as-if the
+arbitrarily complex R expressions. Accessing the alias acts as if the
 aliased expression were invoked instead, and continuously reflects the
-current value of that expression: updates to the original expression
-will be reflected in the alias; and updates to the alias will
-automatically be reflected in the original expression.
+current value of that expression: updates made to names in the original
+expression will be reflected in the alias; and updates to the alias will
+modify the value of the original expression, if it is assignable.
 
 ## Installation
 
@@ -36,27 +36,32 @@ library(aka)
 ``` r
 x = 'hello'
 alias(ax = x)
+```
+
+Now `ax` acts as an *alias* for `x`:
+
+``` r
 ax
 ```
 
     ## [1] "hello"
 
+And unlike a simple copy, changes to either name are reflected in the
+other:
+
 ``` r
-x = 'world'
+x = 'bye'
 ax
 ```
 
-    ## [1] "world"
+    ## [1] "bye"
 
 ``` r
-ax = 'goodbye'
+ax = 'hi again'
 x
 ```
 
-    ## [1] "goodbye"
-
-As we can see, updates to the original names are reflected in the alias,
-and updates to the alias are reflected in the original name.
+    ## [1] "hi again"
 
 As an alternative syntax, we can use an “assignment-like” form:
 
@@ -66,7 +71,7 @@ ax := x
 
 This form is strictly equivalent to `alias(ax = x)`.
 
-Furthermore, aliases can be created for complex expressions:
+Aliases become more powerful when used with complex expressions:
 
 ``` r
 mercedes := mtcars[grep('^Merc ', rownames(mtcars)), ]
@@ -87,7 +92,7 @@ mercedes
 of the original, underlying objects:
 
 ``` r
-# Set all Mercedes engine types to V-shaped
+# Set all Mercedes engine types to “V-shaped”
 mercedes$vs = 0
 
 mtcars[8 : 14, 'vs', drop = FALSE]
