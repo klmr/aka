@@ -101,6 +101,7 @@ test_that('alias assignment works with `value` inside expression', {
 })
 
 test_that('alias() expects exactly one named argument in `...`', {
+  expect_error(alias(), 'alias() expects a single argument', fixed = TRUE)
   expect_error(alias(1), 'alias() expects an argument of the form', fixed = TRUE)
   expect_error(alias(1, 2), 'alias() expects a single argument', fixed = TRUE)
   expect_error(alias(x = 1, 2), 'alias() expects a single argument', fixed = TRUE)
@@ -154,4 +155,15 @@ test_that('alias operator has the correct operator precedence', {
 
   expect_equal(s, 2L)
   expect_identical(alias_expr('s'), quote(x + y))
+})
+
+test_that('alias mutation still works with overridden arrow assignment', {
+  `<-` = function (lhs, rhs) {
+    stop('should not be called')
+  }
+
+  x = data.frame(a = 1 : 2, b = c('a', 'b'))
+  alias(ax = x[1L, ])
+  expect_no_error({ax[1L] = 3L})
+  expect_equal(x[1L, 1L], 3L)
 })
