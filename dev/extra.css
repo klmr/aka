@@ -1,0 +1,15 @@
+.pkg {
+  quotes: '‘' '’';
+}
+
+.pkg::before {
+  content: open-quote;
+}
+
+.pkg::after {
+  content: close-quote;
+}
+
+.table {
+  font-size: 0.8em;
+}
